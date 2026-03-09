@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>SPRY AI Field App</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pri:#0B4B73;--acc:#C3D041;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--gray:#6b7280;--green:#10b981;--purple:#8b5cf6}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f172a;color:#fff;overflow-x:hidden;min-height:100vh}
+.header{background:linear-gradient(135deg,var(--pri),#1e3a5f);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000}
+.logo{font-size:15px;font-weight:700}.logo span{color:var(--acc)}
+.header-right{display:flex;gap:6px;align-items:center}
+.gps-btn{padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#94a3b8;font-size:10px;font-weight:600;cursor:pointer}
+.gps-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.terr-badge{background:rgba(255,255,255,.1);padding:3px 8px;border-radius:4px;font-size:10px;color:#94a3b8}
+
+/* Tabs */
+.nav-tabs{display:flex;background:#1e293b;border-bottom:1px solid #334155}
+.nav-tab{flex:1;padding:8px;text-align:center;font-size:11px;font-weight:600;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;transition:.15s}
+.nav-tab.active{color:var(--acc);border-bottom-color:var(--acc)}
+
+/* Map */
+#map{width:100%;height:260px}
+
+/* Visit banner */
+.visit-banner{display:none;background:linear-gradient(135deg,var(--green),#059669);padding:8px 14px;align-items:center;justify-content:space-between}
+.visit-banner.active{display:flex}
+.visit-timer{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.visit-name{font-size:11px;opacity:.9}
+.end-visit-btn{padding:5px 12px;border-radius:6px;border:none;background:rgba(0,0,0,.25);color:#fff;font-size:11px;font-weight:700;cursor:pointer}
+
+/* Sort/Filter bar */
+.controls{padding:8px 12px;background:#1e293b;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tier-btn{padding:3px 8px;border-radius:12px;border:1px solid #334155;background:transparent;color:#94a3b8;font-size:9px;font-weight:600;cursor:pointer}
+.tier-btn.active{color:#fff;border-color:currentColor}
+.sort-toggle{display:flex;background:#0f172a;border-radius:5px;padding:2px;margin-left:auto}
+.sort-opt{padding:3px 8px;border-radius:4px;border:none;font-size:9px;font-weight:700;cursor:pointer;color:#64748b;background:transparent}
+.sort-opt.active{background:var(--pri);color:#fff}
+
+/* Batch bar */
+.batch-bar{display:none;padding:6px 12px;background:#065f46;align-items:center;justify-content:space-between}
+.batch-bar.show{display:flex}
+.batch-bar span{font-size:11px;font-weight:600}
+.batch-btns{display:flex;gap:4px}
+.batch-btns button{padding:3px 10px;border-radius:5px;border:none;font-size:10px;font-weight:700;cursor:pointer}
+
+/* Cards */
+.card-list{padding:8px 10px;max-height:calc(100vh - 460px);overflow-y:auto}
+.section-label{font-size:10px;font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:.5px;padding:6px 0 3px}
+.hcp-card{display:flex;align-items:center;padding:7px 8px;border-radius:7px;margin-bottom:3px;gap:6px;cursor:pointer;transition:.1s}
+.hcp-card:active{transform:scale(.99)}
+.card-check{width:16px;height:16px;border-radius:3px;border:2px solid #475569;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700;transition:.15s}
+.card-check.on{background:var(--green);border-color:var(--green);color:#fff}
+.card-tier{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0}
+.card-info{flex:1;min-width:0}
+.card-name{font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px}
+.card-name span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-meta{font-size:9px;color:#94a3b8;margin-top:1px}
+.card-badge{font-size:7px;font-weight:700;padding:1px 4px;border-radius:2px;letter-spacing:.3px}
+.card-dist{font-size:9px;font-weight:600;flex-shrink:0}
+
+/* Route panel */
+.route-panel{padding:8px 10px}
+.route-stop{display:flex;align-items:center;padding:5px 7px;background:#1e293b;border-radius:5px;margin-bottom:3px;gap:5px;font-size:10px;cursor:grab}
+.route-num{width:18px;height:18px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0}
+.route-name{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.route-arrows{display:flex;flex-direction:column;gap:0;flex-shrink:0}
+.route-arrows button{background:none;border:none;color:#64748b;font-size:8px;cursor:pointer;padding:0 2px}
+.route-arrows button:disabled{color:#334155}
+.route-rm{background:none;border:none;color:var(--red);font-size:12px;cursor:pointer}
+
+/* Stats bar */
+.stats-bar{display:flex;background:#1e293b;padding:8px 14px;gap:16px;border-top:1px solid #334155}
+.stat{text-align:center;flex:1}
+.stat .val{font-size:16px;font-weight:700;color:var(--acc)}
+.stat .lbl{font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}
+
+/* Review */
+.review-header{background:linear-gradient(135deg,var(--pri),#1e3a5f);padding:12px 14px}
+.review-stats{display:flex;gap:14px;margin-top:8px;font-size:10px;color:#94a3b8}
+.review-stats .rv{font-size:16px;font-weight:700}
+.maps-link{display:block;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--green),#059669);color:#fff;font-size:14px;font-weight:700;text-align:center;text-decoration:none;margin:10px}
+
+/* Veeva modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;align-items:flex-end;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:#1e293b;border-radius:14px 14px 0 0;width:100%;max-width:440px;max-height:85vh;overflow-y:auto;padding:16px}
+.modal h3{font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.form-row{margin-bottom:8px}
+.form-row label{display:block;font-size:10px;font-weight:600;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px}
+.form-row select,.form-row input,.form-row textarea{width:100%;padding:7px 10px;border-radius:6px;border:1px solid #334155;background:#0f172a;color:#fff;font-size:12px;font-family:inherit}
+.form-row textarea{height:60px;resize:none}
+.form-actions{display:flex;gap:8px;margin-top:10px}
+.form-actions button{flex:1;padding:10px;border-radius:8px;border:none;font-size:12px;font-weight:700;cursor:pointer}
+.btn-cancel{background:#334155;color:#fff}
+.btn-submit{background:var(--green);color:#fff}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<div class="header">
+  <div class="logo"><span>SPRY</span> Field</div>
+  <div class="header-right">
+    <span class="terr-badge" id="terrBadge">B10405 Tucson</span>
+    <button class="gps-btn" id="gpsBtn" onclick="toggleGPS()">GPS Off</button>
+  </div>
+</div>
+
+<!-- VISIT BANNER -->
+<div class="visit-banner" id="visitBanner">
+  <div><div class="visit-name" id="visitName">Visiting...</div><div class="visit-timer" id="visitTimer">00:00</div></div>
+  <button class="end-visit-btn" onclick="endVisit()">End Visit</button>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <div class="nav-tab active" data-tab="plan" onclick="switchTab('plan')">Route Plan</div>
+  <div class="nav-tab" data-tab="route" onclick="switchTab('route')">My Route (<span id="routeCount">0</span>)</div>
+  <div class="nav-tab" data-tab="review" onclick="switchTab('review')">Review & Go</div>
+</div>
+
+<!-- MAP -->
+<div id="map"></div>
+
+<!-- CONTROLS -->
+<div class="controls" id="controlsBar">
+  <button class="tier-btn active" data-f="All" onclick="setFilter('All',this)">All</button>
+  <button class="tier-btn" data-f="ARS A" onclick="setFilter('ARS A',this)" style="color:var(--red)">A</button>
+  <button class="tier-btn" data-f="ARS B" onclick="setFilter('ARS B',this)" style="color:var(--amber)">B</button>
+  <button class="tier-btn" data-f="ARS C" onclick="setFilter('ARS C',this)" style="color:var(--blue)">C</button>
+  <button class="tier-btn" data-f="Non-Target" onclick="setFilter('Non-Target',this)" style="color:var(--gray)">NT</button>
+  <div class="sort-toggle">
+    <button class="sort-opt active" onclick="setSort('priority',this)">Priority</button>
+    <button class="sort-opt" onclick="setSort('proximity',this)">Proximity</button>
+  </div>
+</div>
+
+<!-- BATCH BAR -->
+<div class="batch-bar" id="batchBar">
+  <span id="batchCount">0 selected</span>
+  <div class="batch-btns">
+    <button style="background:#334155;color:#fff" onclick="clearSel()">Clear</button>
+    <button style="background:var(--green);color:#fff" onclick="addSelToRoute()">Add to Route</button>
+  </div>
+</div>
+
+<!-- CARD LIST / ROUTE PANEL / REVIEW -->
+<div id="planView" class="card-list"></div>
+<div id="routeView" class="route-panel" style="display:none"></div>
+<div id="reviewView" style="display:none"></div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val" id="stCalls">0</div><div class="lbl">Calls</div></div>
+  <div class="stat"><div class="val" id="stMiles">0.0</div><div class="lbl">Miles</div></div>
+  <div class="stat"><div class="val" id="stTime">0m</div><div class="lbl">Field Time</div></div>
+  <div class="stat"><div class="val" id="stStops">0</div><div class="lbl">Stops</div></div>
+</div>
+
+<!-- VEEVA MODAL -->
+<div class="modal-overlay" id="veevaModal">
+  <div class="modal">
+    <h3>&#128203; Log Call</h3>
+    <div class="form-row"><label>HCP</label><input id="vHcp" readonly></div>
+    <div class="form-row"><label>Call Type</label><select id="vType"><option>Detail</option><option>Sample</option><option>Quick Touch</option></select></div>
+    <div class="form-row"><label>Products Discussed</label><select id="vProd"><option>neffy 2mg</option><option>neffy 1mg</option><option>Both</option></select></div>
+    <div class="form-row"><label>Key Messages</label><select id="vMsg"><option>Needle-free convenience</option><option>Dosing simplicity</option><option>Insurance/coverage</option><option>Blink program</option></select></div>
+    <div class="form-row"><label>HCP Reaction</label><select id="vReact"><option>Positive</option><option>Neutral</option><option>Negative</option><option>Wants follow-up</option></select></div>
+    <div class="form-row"><label>Notes</label><textarea id="vNotes" placeholder="Call notes..."></textarea></div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeVeeva()">Cancel</button>
+      <button class="btn-submit" onclick="submitVeeva()">Submit Call</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CONFIG = {
+  PBI: { clientId: '', datasetId: '', tenantId: '', endpoint: '' },
+  VEEVA: { instanceUrl: '', sessionToken: '' }
+};
+
+const TIER_COLORS = {"ARS A":"#ef4444","ARS B":"#f59e0b","ARS C":"#3b82f6","Non-Target":"#6b7280"};
+const TIER_SHORT = {"ARS A":"A","ARS B":"B","ARS C":"C","Non-Target":"NT"};
+const TIER_ORDER = {"ARS A":0,"ARS B":1,"ARS C":2,"Non-Target":3};
+
+const TARGETS = [
+  {id:1,npi:"1023491701",name:"JACOB, MRIDULA",tier:"ARS B",spec:"Allergy",dec:7,calls:10,callGoal:6,neffyTrx:0,epiMktTrx:0,share:0,addr:"2841 N Oracle Rd",city:"Tucson",st:"AZ",zip:"85705",lat:32.2620,lng:-110.9747},
+  {id:2,npi:"1356354633",name:"KHOURY, LUDWIG",tier:"ARS B",spec:"Allergy",dec:7,calls:5,callGoal:6,neffyTrx:0,epiMktTrx:0,share:0,addr:"6565 E Carondelet Dr",city:"Tucson",st:"AZ",zip:"85710",lat:32.2118,lng:-110.8680},
+  {id:3,npi:"1518573716",name:"KERSEY, TIMOTHY",tier:"ARS A",spec:"Allergy NPPA",dec:7,calls:6,callGoal:8,neffyTrx:2,epiMktTrx:3,share:40.3,addr:"1600 N Campbell Ave",city:"Tucson",st:"AZ",zip:"85719",lat:32.2480,lng:-110.9440},
+  {id:4,npi:"1649379652",name:"DHILLON, MOHAN",tier:"ARS A",spec:"Allergy",dec:7,calls:6,callGoal:8,neffyTrx:6,epiMktTrx:7,share:44.9,addr:"3838 N Campbell Ave",city:"Tucson",st:"AZ",zip:"85719",lat:32.2700,lng:-110.9440},
+  {id:5,npi:"1023119021",name:"STANKUS, RICHARD",tier:"ARS A",spec:"Allergy",dec:8,calls:9,callGoal:8,neffyTrx:9,epiMktTrx:23,share:28.2,addr:"5199 E Farness Dr",city:"Tucson",st:"AZ",zip:"85712",lat:32.2340,lng:-110.8800},
+  {id:6,npi:"1851387724",name:"CHAMPOUX, EDWARD",tier:"ARS A",spec:"Allergy",dec:8,calls:6,callGoal:8,neffyTrx:7,epiMktTrx:16,share:30.7,addr:"6830 N La Cholla Blvd",city:"Tucson",st:"AZ",zip:"85741",lat:32.3060,lng:-111.0250},
+  {id:7,npi:"1902161821",name:"GOETZ, SUMMER",tier:"ARS A",spec:"Allergy NPPA",dec:9,calls:12,callGoal:8,neffyTrx:26,epiMktTrx:37,share:41.2,addr:"2905 N Country Club Rd",city:"Tucson",st:"AZ",zip:"85716",lat:32.2540,lng:-110.9560},
+  {id:8,npi:"1861461477",name:"SOTOMAYOR, JUAN",tier:"ARS A",spec:"Allergy",dec:8,calls:9,callGoal:8,neffyTrx:23,epiMktTrx:37,share:38.5,addr:"1501 N Campbell Ave",city:"Tucson",st:"AZ",zip:"85724",lat:32.2470,lng:-110.9440},
+  {id:9,npi:"1477527828",name:"FLANAGAN, JOSEPH",tier:"ARS A",spec:"Allergy",dec:8,calls:7,callGoal:8,neffyTrx:18,epiMktTrx:33,share:35.6,addr:"4575 E Broadway Blvd",city:"Tucson",st:"AZ",zip:"85711",lat:32.2218,lng:-110.8900},
+  {id:10,npi:"1679191787",name:"SALVAGNO, ANNA",tier:"ARS A",spec:"Allergy",dec:10,calls:8,callGoal:8,neffyTrx:22,epiMktTrx:62,share:26.6,addr:"7473 E Tanque Verde Rd",city:"Tucson",st:"AZ",zip:"85715",lat:32.2450,lng:-110.8300},
+  {id:11,npi:"1831158351",name:"GORDON, JOHN",tier:"ARS A",spec:"Allergy NPPA",dec:8,calls:5,callGoal:8,neffyTrx:14,epiMktTrx:37,share:27.9,addr:"2800 E Ajo Way",city:"Tucson",st:"AZ",zip:"85713",lat:32.1880,lng:-110.9420},
+  {id:12,npi:"1679675995",name:"SMITH, CHRISTOPHER",tier:"ARS A",spec:"Allergy",dec:9,calls:9,callGoal:8,neffyTrx:31,epiMktTrx:60,share:34.5,addr:"5301 E Grant Rd",city:"Tucson",st:"AZ",zip:"85712",lat:32.2490,lng:-110.8760},
+  {id:13,npi:"1598375396",name:"MUGAYA, JACOB",tier:"ARS A",spec:"Allergy NPPA",dec:8,calls:5,callGoal:8,neffyTrx:19,epiMktTrx:42,share:31.1,addr:"4500 S 12th Ave",city:"Tucson",st:"AZ",zip:"85714",lat:32.1700,lng:-110.9730},
+  {id:14,npi:"1932207370",name:"COSACHOV, JOHN",tier:"ARS A",spec:"Allergy",dec:8,calls:5,callGoal:8,neffyTrx:23,epiMktTrx:45,share:34.4,addr:"1625 N Craycroft Rd",city:"Tucson",st:"AZ",zip:"85712",lat:32.2476,lng:-110.8830},
+  {id:15,npi:"1356355275",name:"PIERETTI, MARIAH",tier:"ARS A",spec:"Allergy",dec:9,calls:6,callGoal:8,neffyTrx:32,epiMktTrx:47,share:40.8,addr:"3950 S Country Club Rd",city:"Tucson",st:"AZ",zip:"85714",lat:32.1810,lng:-110.9560},
+  {id:16,npi:"1871553339",name:"MUSEUMS, RHONDA",tier:"ARS A",spec:"Allergy NPPA",dec:8,calls:2,callGoal:8,neffyTrx:4,epiMktTrx:20,share:17.0,addr:"333 W Fort Lowell Rd",city:"Tucson",st:"AZ",zip:"85705",lat:32.2570,lng:-110.9810},
+  {id:17,npi:"1063867109",name:"SEMENZA, KRISTY",tier:"ARS A",spec:"Allergy",dec:8,calls:2,callGoal:8,neffyTrx:16,epiMktTrx:26,share:38.5,addr:"7230 N Mona Lisa Rd",city:"Tucson",st:"AZ",zip:"85741",lat:32.3120,lng:-111.0260},
+  {id:18,npi:"1689179889",name:"NORRIS, MATTHEW",tier:"ARS A",spec:"Allergy",dec:8,calls:0,callGoal:8,neffyTrx:9,epiMktTrx:18,share:33.8,addr:"4900 N Stone Ave",city:"Tucson",st:"AZ",zip:"85704",lat:32.2830,lng:-110.9720},
+  {id:19,npi:"1285186320",name:"CZWOJDAK, JACQUELINE",tier:"ARS A",spec:"Allergy NPPA",dec:8,calls:2,callGoal:8,neffyTrx:8,epiMktTrx:17,share:33.4,addr:"2625 N Craycroft Rd",city:"Tucson",st:"AZ",zip:"85712",lat:32.2560,lng:-110.8830},
+  {id:20,npi:"1750512851",name:"HISER-RUDDICK, DENISE",tier:"ARS A",spec:"Allergy NPPA",dec:7,calls:2,callGoal:8,neffyTrx:10,epiMktTrx:17,share:37.3,addr:"1830 W Grant Rd",city:"Tucson",st:"AZ",zip:"85745",lat:32.2490,lng:-111.0060},
+  {id:21,npi:"1104808898",name:"PARKER, MICHAEL",tier:"ARS A",spec:"ENT",dec:7,calls:2,callGoal:8,neffyTrx:4,epiMktTrx:13,share:23.5,addr:"5665 W Valencia Rd",city:"Tucson",st:"AZ",zip:"85757",lat:32.1369,lng:-111.0550},
+  {id:22,npi:"1780673160",name:"JONES, MONICA",tier:"ARS A",spec:"PEDS",dec:7,calls:0,callGoal:8,neffyTrx:10,epiMktTrx:14,share:41.7,addr:"5420 E Broadway Blvd",city:"Tucson",st:"AZ",zip:"85711",lat:32.2218,lng:-110.8850},
+  {id:23,npi:"1518365659",name:"GARRETT, ANDREA",tier:"ARS A",spec:"Allergy NPPA",dec:7,calls:1,callGoal:8,neffyTrx:4,epiMktTrx:9,share:31.1,addr:"1400 N Wilmot Rd",city:"Tucson",st:"AZ",zip:"85712",lat:32.2470,lng:-110.8670},
+  {id:24,npi:"1700864881",name:"KHAN, RIZWAN",tier:"ARS A",spec:"Allergy",dec:7,calls:1,callGoal:8,neffyTrx:7,epiMktTrx:9,share:43.7,addr:"2150 S 4th Ave",city:"Tucson",st:"AZ",zip:"85713",lat:32.1970,lng:-110.9710},
+  {id:25,npi:"1528476629",name:"RUDERT, KATHERINE",tier:"ARS A",spec:"PEDS NPPA",dec:7,calls:0,callGoal:8,neffyTrx:3,epiMktTrx:4,share:42.9,addr:"6200 E Pima St",city:"Tucson",st:"AZ",zip:"85712",lat:32.2410,lng:-110.8680},
+  {id:26,npi:"1558595017",name:"GLICK, SCOTT",tier:"ARS A",spec:"Emer Med",dec:5,calls:0,callGoal:8,neffyTrx:3,epiMktTrx:3,share:50.0,addr:"3301 S Kino Pkwy",city:"Tucson",st:"AZ",zip:"85713",lat:32.1900,lng:-110.9440},
+  {id:27,npi:"2345678901",name:"REEVES, PATRICIA",tier:"ARS B",spec:"Pediatrics",dec:6,calls:3,callGoal:4,neffyTrx:5,epiMktTrx:12,share:41.7,addr:"4915 E Broadway Blvd",city:"Tucson",st:"AZ",zip:"85711",lat:32.2218,lng:-110.8920},
+  {id:28,npi:"2345678902",name:"TORRES, GABRIEL",tier:"ARS B",spec:"Family Med",dec:7,calls:0,callGoal:4,neffyTrx:2,epiMktTrx:8,share:25.0,addr:"1830 E Prince Rd",city:"Tucson",st:"AZ",zip:"85719",lat:32.2650,lng:-110.9440},
+  {id:29,npi:"2345678903",name:"NOLAN, ELIZABETH",tier:"ARS B",spec:"Allergy",dec:8,calls:1,callGoal:4,neffyTrx:11,epiMktTrx:30,share:36.7,addr:"3302 E Speedway Blvd",city:"Tucson",st:"AZ",zip:"85716",lat:32.2368,lng:-110.9200},
+  {id:30,npi:"3456789001",name:"WELLS, DEREK",tier:"ARS C",spec:"Pediatrics",dec:6,calls:4,callGoal:2,neffyTrx:3,epiMktTrx:10,share:30.0,addr:"401 N Bonita Ave",city:"Tucson",st:"AZ",zip:"85745",lat:32.2230,lng:-111.0150},
+  {id:31,npi:"3456789002",name:"MORENO, ANNA",tier:"ARS C",spec:"Family Med",dec:5,calls:1,callGoal:2,neffyTrx:1,epiMktTrx:5,share:20.0,addr:"5055 S Mission Rd",city:"Tucson",st:"AZ",zip:"85746",lat:32.1500,lng:-111.0020},
+  {id:32,npi:"3456789003",name:"CHEN, ALICE",tier:"ARS C",spec:"Allergy",dec:7,calls:0,callGoal:2,neffyTrx:4,epiMktTrx:9,share:44.4,addr:"6420 E Speedway Blvd",city:"Tucson",st:"AZ",zip:"85710",lat:32.2368,lng:-110.8600},
+  {id:33,npi:"4567890001",name:"OKONKWO, BLESSING",tier:"Non-Target",spec:"Pediatrics",dec:4,calls:0,callGoal:0,neffyTrx:1,epiMktTrx:3,share:33.3,addr:"3130 E Ajo Way",city:"Tucson",st:"AZ",zip:"85713",lat:32.1880,lng:-110.9340},
+  {id:34,npi:"4567890002",name:"RIVERS, JAMES",tier:"Non-Target",spec:"Emer Med",dec:3,calls:0,callGoal:0,neffyTrx:0,epiMktTrx:2,share:0,addr:"2800 E Ajo Way",city:"Tucson",st:"AZ",zip:"85713",lat:32.1880,lng:-110.9420},
+  {id:35,npi:"4567890003",name:"SHAW, BRIDGET",tier:"Non-Target",spec:"Family Med",dec:5,calls:0,callGoal:0,neffyTrx:2,epiMktTrx:6,share:33.3,addr:"1955 N Kolb Rd",city:"Tucson",st:"AZ",zip:"85715",lat:32.2470,lng:-110.8460}
+];
+
+let S = {
+  route: [], selected: new Set(), filter: "All", sort: "priority", tab: "plan",
+  visiting: null, visitStart: null, visitInterval: null,
+  gpsOn: false, gpsWatch: null, lastPos: null, miles: 0, callsDone: 0, fieldStart: null,
+  markers: {}, radiusCircle: null
+};
+
+const hav = (a,b) => { const R=3959,dLat=((b.lat-a.lat)*Math.PI)/180,dLon=((b.lng-a.lng)*Math.PI)/180,x=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)**2; return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)); };
+const priSort = (a,b) => { const d=TIER_ORDER[a.tier]-TIER_ORDER[b.tier]; return d!==0?d:a.calls-b.calls; };
+const proxSort = (a,b,ref) => hav(ref,a)-hav(ref,b);
+const routeIds = () => new Set(S.route.map(r=>r.id));
+const badge = t => { const o=t.calls>t.callGoal&&t.callGoal>0, u=t.calls===0, l=t.calls>0&&t.calls<t.callGoal*.5&&t.callGoal>0; return o?['OVER','var(--red)']:u?['UNCALLED','var(--purple)']:l?['LOW','var(--amber)']:['OK','var(--green)']; };
+const totalMi = () => { let m=0; for(let i=1;i<S.route.length;i++) m+=hav(S.route[i-1],S.route[i]); return m; };
+
+const map = L.map('map',{zoomControl:false}).setView([32.22,-110.93],11);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+L.control.zoom({position:'topright'}).addTo(map);
+
+function refreshMarkers(){
+  Object.values(S.markers).forEach(m=>map.removeLayer(m));
+  S.markers={};
+  if(S.radiusCircle){map.removeLayer(S.radiusCircle);S.radiusCircle=null;}
+  const rIds=routeIds();
+  TARGETS.forEach(t=>{
+    const inR=rIds.has(t.id), isSel=S.selected.has(t.id);
+    const idx=inR?S.route.findIndex(r=>r.id===t.id):-1;
+    const color=inR?'#10b981':TIER_COLORS[t.tier];
+    const icon=L.divIcon({className:'',html:`<div style="width:${inR?20:14}px;height:${inR?20:14}px;border-radius:50%;background:${color};border:2px solid ${inR||isSel?'#fff':'rgba(255,255,255,.3)'};display:flex;align-items:center;justify-content:center;font-size:${inR?9:7}px;font-weight:700;color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.4)">${inR?(idx+1):TIER_SHORT[t.tier]}</div>`,iconSize:[inR?20:14,inR?20:14],iconAnchor:[inR?10:7,inR?10:7]});
+    const m=L.marker([t.lat,t.lng],{icon}).addTo(map);
+    m.on('click',()=>{ if(!inR){toggleSel(t.id);renderAll();} });
+    m.bindTooltip(`<b>${t.name}</b><br>${TIER_SHORT[t.tier]} | D${t.dec} | ${t.calls}/${t.callGoal} calls | ${t.share}%`,{direction:'top',offset:[0,-8]});
+    S.markers[t.id]=m;
+  });
+  if(S.route.length>0){
+    const last=S.route[S.route.length-1];
+    S.radiusCircle=L.circle([last.lat,last.lng],{radius:8047,color:'#10b981',fillColor:'#10b981',fillOpacity:.06,weight:1,dashArray:'6,4'}).addTo(map);
+  }
+  if(S.route.length>1){
+    const pts=S.route.map(r=>[r.lat,r.lng]);
+    L.polyline(pts,{color:'#10b981',weight:2,dashArray:'8,5'}).addTo(map);
+  }
+}
+
+function renderAll(){
+  const rIds=routeIds();
+  const avail=TARGETS.filter(t=>!rIds.has(t.id));
+  const firstStop=S.route[0]||null;
+
+  let sorted;
+  if(S.sort==='proximity'&&firstStop) sorted=[...avail].sort((a,b)=>proxSort(a,b,firstStop));
+  else sorted=[...avail].sort(priSort);
+
+  const filtered=S.filter==='All'?sorted:sorted.filter(t=>t.tier===S.filter);
+
+  let suggestions=[];
+  if(S.route.length>0){
+    const last=S.route[S.route.length-1];
+    const nearby=avail.filter(t=>hav(last,t)<=5);
+    suggestions=S.sort==='proximity'?nearby.sort((a,b)=>proxSort(a,b,last)):nearby.sort(priSort);
+  }
+  const sugIds=new Set(suggestions.map(s=>s.id));
+  const remaining=filtered.filter(t=>!sugIds.has(t.id));
+
+  const selCount=[...S.selected].filter(id=>!rIds.has(id)).length;
+  const bb=document.getElementById('batchBar');
+  bb.className=selCount>0?'batch-bar show':'batch-bar';
+  document.getElementById('batchCount').textContent=selCount+' selected';
+
+  document.getElementById('routeCount').textContent=S.route.length;
+  document.getElementById('stStops').textContent=S.route.length;
+
+  let html='';
+  if(S.route.length===0&&filtered.length>0){
+    html+=`<div class="section-label">Recommended Start</div>`;
+    html+=cardHTML(filtered[0],null,true);
+  }
+  if(suggestions.length>0){
+    const last=S.route[S.route.length-1];
+    html+=`<div class="section-label">Nearby (5mi from ${S.route[S.route.length-1].name.split(',')[0]})</div>`;
+    suggestions.forEach(t=>{ html+=cardHTML(t,hav(last,t)); });
+  }
+  html+=`<div class="section-label">${S.route.length===0?'All Targets':'Remaining'} (${remaining.length})</div>`;
+  remaining.forEach(t=>{
+    const dist=S.route.length>0?hav(S.route[S.route.length-1],t):null;
+    html+=cardHTML(t,dist);
+  });
+  document.getElementById('planView').innerHTML=html;
+
+  let rhtml='';
+  if(S.route.length===0) rhtml='<div style="padding:30px;text-align:center;color:#64748b;font-size:12px">No stops yet. Add targets from Route Plan tab.</div>';
+  else S.route.forEach((t,i)=>{ rhtml+=routeStopHTML(t,i); });
+  document.getElementById('routeView').innerHTML=rhtml;
+
+  renderReview();
+  refreshMarkers();
+}
+
+function cardHTML(t,dist,isRec){
+  const [bTxt,bCol]=badge(t);
+  const isSel=S.selected.has(t.id);
+  const bg=isSel?'#0d2818':({'ARS A':'#1a1215','ARS B':'#1a1810','ARS C':'#101520','Non-Target':'#151518'}[t.tier]);
+  return `<div class="hcp-card" style="background:${bg};border-left:3px solid ${TIER_COLORS[t.tier]}" onclick="toggleSel(${t.id})">
+    <div class="card-check ${isSel?'on':''}">${isSel?'&#10003;':''}</div>
+    <div class="card-tier" style="background:${TIER_COLORS[t.tier]}">${TIER_SHORT[t.tier]}</div>
+    <div class="card-info">
+      <div class="card-name"><span>${t.name}</span><span class="card-badge" style="color:${bCol};background:${bCol}20">${bTxt}</span></div>
+      <div class="card-meta">${t.spec} | D${t.dec} | ${t.calls}/${t.callGoal} calls | ${t.neffyTrx} nTRx | ${t.share}%</div>
+    </div>
+    ${dist!=null?`<div class="card-dist" style="color:${TIER_COLORS[t.tier]}">${dist.toFixed(1)}mi</div>`:''}
+    ${isRec?`<button onclick="event.stopPropagation();addOne(${t.id})" style="padding:4px 10px;border-radius:5px;border:none;background:var(--green);color:#fff;font-size:9px;font-weight:700;cursor:pointer">Start</button>`:''}
+  </div>`;
+}
+
+function routeStopHTML(t,i){
+  const prev=i>0?S.route[i-1]:null;
+  const dist=prev?hav(prev,t).toFixed(1):null;
+  return `<div class="route-stop" style="border-left:3px solid ${TIER_COLORS[t.tier]}">
+    <div class="route-num">${i+1}</div>
+    <div class="route-name">${t.name}</div>
+    <span style="color:${TIER_COLORS[t.tier]};font-size:9px;font-weight:700">${TIER_SHORT[t.tier]}</span>
+    <span style="color:#64748b;font-size:9px">D${t.dec}</span>
+    ${dist?`<span style="color:#64748b;font-size:9px">${dist}mi</span>`:''}
+    <div class="route-arrows">
+      <button onclick="moveStop(${i},-1)" ${i===0?'disabled':''}>&uarr;</button>
+      <button onclick="moveStop(${i},1)" ${i===S.route.length-1?'disabled':''}>&darr;</button>
+    </div>
+    <button onclick="startVisitFromRoute(${t.id})" style="background:var(--green);border:none;color:#fff;padding:2px 6px;border-radius:3px;font-size:8px;font-weight:700;cursor:pointer">Visit</button>
+    <button class="route-rm" onclick="rmStop(${t.id})">&times;</button>
+  </div>`;
+}
+
+function renderReview(){
+  const rv=document.getElementById('reviewView');
+  if(S.route.length===0){rv.innerHTML='<div style="padding:30px;text-align:center;color:#64748b;font-size:12px">Build your route first.</div>';return;}
+  const isApple=/iPhone|iPad|iPod/.test(navigator.userAgent);
+  const o=S.route[0],d=S.route[S.route.length-1];
+  const wps=S.route.length>2?`&waypoints=${S.route.slice(1,-1).map(r=>`${r.lat},${r.lng}`).join('|')}`:'';
+  const url=isApple?`maps://?daddr=${S.route.map(r=>`${r.lat},${r.lng}`).join('&daddr=')}`:`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lng}&destination=${d.lat},${d.lng}${wps}&travelmode=driving`;
+  const ac=S.route.filter(r=>r.tier==='ARS A').length,bc=S.route.filter(r=>r.tier==='ARS B').length;
+  let h=`<div class="review-header"><div style="font-size:14px;font-weight:700">Route Review</div>
+    <div class="review-stats">
+      <div><span class="rv" style="color:var(--acc)">${S.route.length}</span> stops</div>
+      <div><span class="rv" style="color:var(--acc)">${totalMi().toFixed(1)}</span> mi</div>
+      <div><span class="rv" style="color:var(--red)">${ac}</span> A</div>
+      <div><span class="rv" style="color:var(--amber)">${bc}</span> B</div>
+    </div></div><div style="padding:8px 10px">`;
+  S.route.forEach((t,i)=>{ h+=routeStopHTML(t,i); });
+  h+=`</div><a class="maps-link" href="${url}" target="_blank" rel="noopener noreferrer">Open in ${isApple?'Apple':'Google'} Maps</a>`;
+  rv.innerHTML=h;
+}
+
+function toggleSel(id){ S.selected.has(id)?S.selected.delete(id):S.selected.add(id); renderAll(); }
+function clearSel(){ S.selected.clear(); renderAll(); }
+function addSelToRoute(){
+  const rIds=routeIds();
+  const toAdd=TARGETS.filter(t=>S.selected.has(t.id)&&!rIds.has(t.id)).sort(priSort);
+  S.route.push(...toAdd); S.selected.clear(); renderAll();
+}
+function addOne(id){ const t=TARGETS.find(x=>x.id===id); if(t){S.route.push(t);S.selected.delete(id);renderAll();} }
+function rmStop(id){ S.route=S.route.filter(t=>t.id!==id); renderAll(); }
+function moveStop(i,dir){
+  const j=i+dir; if(j<0||j>=S.route.length)return;
+  [S.route[i],S.route[j]]=[S.route[j],S.route[i]]; renderAll();
+}
+
+function switchTab(tab){
+  S.tab=tab;
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+  document.getElementById('planView').style.display=tab==='plan'?'':'none';
+  document.getElementById('routeView').style.display=tab==='route'?'':'none';
+  document.getElementById('reviewView').style.display=tab==='review'?'':'none';
+  document.getElementById('controlsBar').style.display=tab==='plan'?'':'none';
+  document.getElementById('batchBar').style.display=tab==='plan'&&[...S.selected].filter(id=>!routeIds().has(id)).length>0?'flex':'none';
+}
+function setFilter(f,el){ S.filter=f; document.querySelectorAll('.tier-btn').forEach(b=>b.classList.toggle('active',b.dataset.f===f)); renderAll(); }
+function setSort(s,el){ S.sort=s; document.querySelectorAll('.sort-opt').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===s)); renderAll(); }
+
+function startVisitFromRoute(id){
+  const t=TARGETS.find(x=>x.id===id); if(!t)return;
+  S.visiting=t; S.visitStart=Date.now(); if(!S.fieldStart)S.fieldStart=Date.now();
+  document.getElementById('visitName').textContent=`Visiting ${t.name}`;
+  document.getElementById('visitBanner').classList.add('active');
+  S.visitInterval=setInterval(()=>{
+    const sec=Math.floor((Date.now()-S.visitStart)/1000);
+    const m=Math.floor(sec/60),s=sec%60;
+    document.getElementById('visitTimer').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    if(sec===900) showToast('15 min reached - log call?');
+  },1000);
+}
+function endVisit(){
+  clearInterval(S.visitInterval);
+  document.getElementById('visitBanner').classList.remove('active');
+  openVeeva(S.visiting);
+  S.visiting=null;
+}
+
+function openVeeva(t){
+  if(!t)return;
+  document.getElementById('vHcp').value=t.name;
+  document.getElementById('veevaModal').classList.add('show');
+}
+function closeVeeva(){ document.getElementById('veevaModal').classList.remove('show'); }
+function submitVeeva(){
+  S.callsDone++; document.getElementById('stCalls').textContent=S.callsDone;
+  closeVeeva();
+  showToast('Call logged');
+}
+
+function toggleGPS(){
+  const btn=document.getElementById('gpsBtn');
+  if(S.gpsOn){ navigator.geolocation.clearWatch(S.gpsWatch); S.gpsOn=false; btn.textContent='GPS Off'; btn.classList.remove('active'); return; }
+  if(!navigator.geolocation){showToast('GPS not available');return;}
+  S.gpsOn=true; btn.textContent='GPS On'; btn.classList.add('active');
+  if(!S.fieldStart)S.fieldStart=Date.now();
+  S.gpsWatch=navigator.geolocation.watchPosition(pos=>{
+    const p={lat:pos.coords.latitude,lng:pos.coords.longitude};
+    if(S.lastPos) S.miles+=hav(S.lastPos,p);
+    S.lastPos=p;
+    document.getElementById('stMiles').textContent=S.miles.toFixed(1);
+  },()=>{},{enableHighAccuracy:true,maximumAge:5000});
+}
+
+setInterval(()=>{
+  if(!S.fieldStart)return;
+  const min=Math.floor((Date.now()-S.fieldStart)/60000);
+  const h=Math.floor(min/60),m=min%60;
+  document.getElementById('stTime').textContent=h>0?`${h}h${m}m`:`${m}m`;
+},30000);
+
+function showToast(msg){
+  const el=document.createElement('div');
+  el.style.cssText='position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:8px 16px;border-radius:8px;font-size:11px;font-weight:600;z-index:3000;box-shadow:0 4px 14px rgba(0,0,0,.5)';
+  el.textContent=msg; document.body.appendChild(el);
+  setTimeout(()=>el.remove(),2500);
+}
+
+renderAll();
+</script>
+</body>
+</html>

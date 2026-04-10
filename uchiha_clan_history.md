@@ -93,4 +93,72 @@ Yet Madara, even at his peak, could not defeat Hashirama. And Hashirama, for his
 
 ---
 
-*(End of pages 1–10 — Chapter VI begins in the next batch.)*
+---
+
+## Chapter VI — The Founding of Konohagakure and the First Betrayal
+
+### 6.1 A Village Built on a Handshake
+
+When Madara Uchiha and Hashirama Senju signed their truce, the entire shinobi world shifted on its axis. For the first time in generations, the two strongest clans were no longer trying to kill each other. Smaller clans, watching the Uchiha and Senju lay down their arms, followed suit. The Sarutobi came. The Akimichi came. The Nara, the Yamanaka, the Hyūga, the Aburame, the Inuzuka — all pledged themselves to the new experiment. Hashirama, using his unique Wood Release, raised the walls and buildings of the new village from the earth itself. Madara, standing at his side, chose the name: Konohagakure no Sato, the Village Hidden in the Leaves, because he saw a fallen leaf drifting on the water and thought it looked like the promise of something new.
+
+The Uchiha were the village's co-founders. This is a fact that later generations of Konoha would conveniently forget, but it was written into the village's bones. Madara and Hashirama chose the site together. They drew up the first laws together. They agreed that the village would be led by a Hokage — literally, "Fire Shadow" — and Madara, as the Uchiha patriarch, believed that this title was his by right. After all, it was Madara who had conceded the most in making peace. It was Madara whose brother had been slain by Tobirama. It was Madara who had agreed to lay down his ancestral enmity for the dream of a village where children would not have to die. Surely, Madara believed, Hashirama would nominate him as the first Hokage.
+
+### 6.2 The Nomination That Broke the Peace
+
+But the village's other clans, when put to the vote, chose Hashirama Senju as the First Hokage. Some say the vote was fair. Some say it was orchestrated by Tobirama, who distrusted the Uchiha to his marrow and who would not countenance an Uchiha leading the village he had bled to build. Whatever the truth, the effect on Madara was catastrophic. The old wound — the wound of Indra passed over for Asura, the wound of the stronger brother watching the weaker one be loved instead — reopened in Madara's chest. He saw, with terrible clarity, the pattern of his reincarnated soul. He had been here before. He had lost here before. And this time, he swore, it would be different.
+
+Madara warned his clansmen that the Uchiha would be sidelined in the new village. That the Senju and their allies would pen the Uchiha into a ghetto, watch them with suspicion, use them as shock troops and then dispose of them. His clansmen, exhausted by generations of war and intoxicated by the new peace, refused to listen. They called Madara paranoid. They called him bitter. They accused him of wanting to restart the very war they had finally ended. Madara, for the second time in his life, felt utterly abandoned by those he had tried to protect. He left the village alone.
+
+### 6.3 The Battle at the Valley of the End
+
+Madara did not leave quietly. Fueled by betrayal, guided by the stone tablets of the Sage of Six Paths, and now privy to ancient prophecies about the Ten-Tails and the Infinite Tsukuyomi, Madara returned to challenge Hashirama one final time. Their duel at the place that would later be called the Valley of the End was the most destructive single battle in shinobi history up to that point. Madara summoned the Nine-Tailed Fox, Kurama, using the power of his Mangekyō Sharingan to bend the beast to his will. Hashirama countered with Wood Release techniques that sprouted forests in moments. The valley itself was carved by their final clash — two statues of the combatants still standing in the ravaged earth centuries later, facing each other forever across the river.
+
+Hashirama won. Or so the world believed. Madara fell, apparently slain, and Hashirama mourned his friend even in victory. In truth, Madara had survived — barely — and had already begun the long, strange plan that would consume the rest of his unnatural life. He had taken a fragment of Hashirama's flesh during their duel and grafted it into his own body, giving him access to Wood Release and, crucially, the ability to awaken the Rinnegan: the legendary eyes of the Sage of Six Paths himself. Madara crawled away into the wilderness, began experimenting with himself as both surgeon and subject, and slowly transformed into the monster that would, nearly a century later, nearly destroy the world. But that is a later chapter. For now, Madara was a ghost. And the Uchiha clan, in Konoha, was left to pick up the pieces of his departure.
+
+---
+
+## Chapter VII — The Uchiha under the First and Second Hokage
+
+### 7.1 Life in the New Village
+
+With Madara gone, leadership of the Uchiha clan passed to those of his cousins and lieutenants who had remained loyal to Konoha. The clan, suddenly without its most famous son, worked hard to prove its loyalty to the new village. They served as elite shinobi, as diplomats, as scholars of the Sharingan. Hashirama Senju, ever the conciliator, made a point of treating the Uchiha as equal partners in the village's governance. He visited the Uchiha compound regularly. He invited Uchiha elders to his table. He tried, in his clumsy, good-hearted way, to make them feel at home.
+
+But Hashirama could not live forever, and when he died — falling at last to injuries sustained in a war against the other new hidden villages, which had sprung up in imitation of Konoha — the Hokage's hat passed to his younger brother. Tobirama Senju became the Second Hokage. And Tobirama did not love the Uchiha as his brother had.
+
+### 7.2 Tobirama's Distrust
+
+Tobirama Senju was a brilliant man and, by the standards of his age, a progressive administrator. He created the chūnin exam system. He established the academy. He founded the ANBU Black Ops. He invented techniques — the Flying Thunder God, Edo Tensei, the Shadow Clone jutsu — that would shape shinobi warfare forever. But he carried within him a deep, unshakable suspicion of the Uchiha clan. He had killed Izuna. He had watched Madara defect. He believed, fervently and privately, that the Uchiha were biologically prone to darkness — that their "Curse of Hatred" was not a metaphor but a diagnosis, and that any Uchiha, given the wrong grief, could become the next Madara.
+
+Tobirama acted on these beliefs. He established the Konoha Military Police Force and made it the exclusive preserve of the Uchiha clan — a gesture that was presented to the Uchiha as an honor, and that was in reality a containment strategy. The police force was politically marginal. It had no seat on the village council. Its duties were domestic and unglamorous. By concentrating the Uchiha there, Tobirama removed them from the village's decision-making apparatus while still allowing them to feel useful. He also relocated the Uchiha compound to the edge of the village, far from the Hokage tower, where they could be watched. The Uchiha of this generation understood, dimly, that they were being managed. Some of them accepted it. Others began to resent it. And in that resentment, the seeds of a much later catastrophe were planted.
+
+### 7.3 Kagami Uchiha, the Exception
+
+Among the Uchiha of this generation, one figure stands out as a counter-example to everything Tobirama believed: Kagami Uchiha. Kagami was one of the Second Hokage's personally trained students, chosen alongside Hiruzen Sarutobi, Homura Mitokado, Koharu Utatane, and Danzō Shimura. He was a prodigy with the Sharingan, a brilliant tactician, and — crucially — a man of unshakable loyalty to Konoha. Kagami fought in the First Shinobi World War on the front lines. He served Tobirama faithfully. He is credited, in some accounts, with saving Tobirama's life on at least one occasion.
+
+Kagami's importance to Uchiha history lies in what he represented, and in what he bequeathed. He represented the possibility — the real, historical possibility — that an Uchiha could be a model citizen of the village, devoted and honorable, without being crushed by the Curse of Hatred. He was proof that the clan's destiny was not written in its blood. And he bequeathed, to his grandson Shisui Uchiha, a temperament and a conviction that would, generations later, very nearly save the clan from extinction. Kagami died in battle during the First Shinobi World War. His comrade Danzō Shimura, who had stood beside him in that war, would later invoke Kagami's memory as justification for some of the darkest acts in Konoha's history. Kagami's name, in other words, became a weapon used against his own descendants. This is the bitterest of Uchiha ironies.
+
+---
+
+## Chapter VIII — The Second Shinobi World War and the Twilight of the Old Clan
+
+### 8.1 The Uchiha in Wartime
+
+By the time of the Second Shinobi World War, the Uchiha clan had been reshaped by decades of life inside Konoha. Their older members still remembered Madara. Their younger members had never known anything but the village. The clan's most celebrated warriors of this era served with distinction on multiple fronts. Their Sharingan was invaluable in intelligence-gathering missions. Their fire jutsu devastated enemy formations. Their names appeared on mission logs, on casualty lists, on commendations signed by the Third Hokage, Hiruzen Sarutobi — Kagami's old teammate, and a man who retained, from his youth, a sincere affection for the Uchiha people.
+
+Under Hiruzen's first term as Hokage, the Uchiha were treated somewhat better than they had been under Tobirama. Hiruzen was a pragmatist who understood that the clan's alienation was a liability. He tried to integrate them more fully. He appointed Uchiha officers to sensitive posts. He personally attended Uchiha funerals. But the structural problems remained. The Military Police Force was still their prison-dressed-as-an-honor. The compound was still at the edge of the village. The whispers — started by Tobirama and propagated by Danzō — still followed them everywhere. The Uchiha were loyal, but the village did not quite trust them, and they knew it.
+
+### 8.2 The Birth of Fugaku Uchiha
+
+Into this delicate, deteriorating situation was born Fugaku Uchiha, the man who would become the last chief of the Uchiha clan in its classical form. Fugaku was a serious, dignified boy, trained in the traditional Uchiha arts and raised on the clan's glorious and bloody history. He awakened his Sharingan young. He rose through the ranks of the Military Police Force with discipline and competence. And he married, eventually, a kind and luminous woman named Mikoto Uchiha, whose patience balanced Fugaku's gravity and whose warmth would soften the household in which two of the most important Uchiha in history would be raised.
+
+Fugaku served with distinction in the Third Shinobi World War. He earned a battlefield reputation as "Wicked Eye Fugaku" — a name bestowed by his enemies in terror — for the devastating power of his Mangekyō Sharingan, which he had awakened through the loss of a close comrade. Few outside the highest echelons of Konoha's leadership knew that Fugaku possessed the Mangekyō; he kept it hidden, both out of clan custom and because he understood that its existence would intensify Danzō's paranoia. Fugaku was a proud man, a competent leader, and, in his way, a loving father. But he was also the inheritor of a long, slow accumulation of Uchiha grievances — and when his patience finally snapped, the consequences would be measured in graves.
+
+### 8.3 Mikoto Uchiha, the Mother
+
+Mikoto Uchiha is one of the unsung figures of the clan's history. She was a jōnin-level kunoichi in her own right, a childhood friend of Kushina Uzumaki (who would later marry Minato Namikaze and give birth to Naruto), and a woman of remarkable emotional intelligence. Mikoto understood her husband's stoicism and worked around it. She understood her clan's pride and worked around that too. She raised her two sons — Itachi and Sasuke — with a tenderness that contrasted sharply with the martial atmosphere of the Uchiha compound. She made them breakfast. She told them stories. She reminded Fugaku, when he forgot, that his sons were not only soldiers.
+
+Mikoto's friendship with Kushina Uzumaki is one of the small, beautiful details of Uchiha history. The two women, from two very different clans, were pregnant at roughly the same time. They commiserated about morning sickness. They exchanged baby clothes. They laughed together in a village that rarely allowed laughter. When Kushina gave birth to Naruto, Mikoto was among the first to congratulate her. When Mikoto gave birth to Sasuke, Kushina returned the favor. Neither of them could have known that their sons would grow up to be rivals, brothers, enemies, and ultimately the men whose bond would save the world. Mikoto would not live to see any of it. But her love — understated, patient, maternal — is one of the threads that holds the entire late history of the Uchiha together.
+
+---
+
+*(End of pages 11–20 — Chapter IX begins in the next batch.)*

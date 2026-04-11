@@ -161,4 +161,64 @@ Mikoto's friendship with Kushina Uzumaki is one of the small, beautiful details 
 
 ---
 
-*(End of pages 11–20 — Chapter IX begins in the next batch.)*
+---
+
+## Chapter IX — Obito Uchiha: The Boy Who Became a Monster
+
+### 9.1 The Late Bloomer
+
+Obito Uchiha was born into a minor branch of the clan, orphaned at an early age, and raised by a grandmother whose name history has not preserved. From the earliest days of his enrollment in the Konoha Academy, Obito was conspicuous for everything the Uchiha clan traditionally disdained. He was late to class. He was clumsy. He cried easily. He tripped over his own feet during taijutsu drills. His grades were at the bottom of his cohort. His Sharingan, which should by rights have awakened during his first serious combat, stubbornly refused to manifest. Among the Uchiha — a clan that measured its children by the color of their eyes — Obito was a source of quiet, sorrowful embarrassment.
+
+And yet Obito was, in many ways, the most profoundly Uchiha member of his generation. He loved. He loved extravagantly, foolishly, with his whole chest. He idolized the Fourth Hokage, Minato Namikaze, who would become his sensei. He admired his rival, Kakashi Hatake, even when Kakashi was cold to him. And above all, he loved Rin Nohara — a kind-hearted medic-nin assigned to Team Minato alongside him and Kakashi — with a devotion that ran deeper than any technique in the Uchiha scrolls. Obito's love was his defining trait. It was also the lever by which he would eventually be broken.
+
+### 9.2 The Mission to Kannabi Bridge
+
+In the middle of the Third Shinobi World War, Team Minato was dispatched on a mission to destroy the Kannabi Bridge, a critical supply route for enemy forces. During the mission, Rin was captured by enemy shinobi. Kakashi, newly promoted to jōnin and determined to follow regulations rather than feelings, insisted that the mission take priority. Obito, incandescent with indignation, refused. He declared one of the most famous lines in shinobi history: that those who break the rules are scum, but those who abandon their comrades are worse than scum. Shamed and moved, Kakashi relented and went with him to rescue Rin.
+
+They found her in an enemy cave. In the ensuing battle, an enemy ninja destroyed Kakashi's left eye. Then, in a moment of cave-in and terror, a massive boulder fell. Obito — the boy who had been called worthless, the boy whose Sharingan had never awakened — shoved Kakashi out of the way and was crushed beneath the stone. In his final act, with half his body pinned under rubble and his life slipping away, Obito finally awakened the Sharingan he had waited his whole childhood for. He asked Rin to implant his left eye into Kakashi's empty socket as a birthday gift to his rival. Rin, sobbing, performed the transplant. Obito told them to go. He told Kakashi to protect Rin with his life. He watched them flee. And then, as he believed, he died.
+
+### 9.3 The Resurrection of Obito
+
+Obito did not die. He was discovered, barely alive, by the elderly Madara Uchiha — the same Madara who had survived the Valley of the End and had been hiding in a subterranean lair, plotting his Moon's Eye Plan, for decades. Madara was on the cusp of death at last, ancient and withered, kept alive only by Hashirama's cells and by sheer malignant willpower. He saw in Obito, at first, only a useful tool — a young Uchiha body into whom the old schemer could pour his accumulated plans. Madara healed Obito with artificial White Zetsu flesh. He told Obito about the history of the world. He told him about the Sage of Six Paths, about the Ten-Tails, about the Infinite Tsukuyomi — the dream-world in which all humans would find peace by sleeping forever inside a single collective illusion.
+
+Obito initially resisted. He still loved Konoha. He still loved Rin. He still wanted, above all, to return to his team. Madara was patient. He knew that Uchiha hearts, once wounded deeply enough, could be twisted into instruments of terrifying precision. And the wound that would break Obito was already, unknown to Obito, being sharpened in the world above.
+
+### 9.4 The Death of Rin Nohara
+
+Rin Nohara was captured by shinobi of Kirigakure, the Village Hidden in the Mist, and had the Three-Tails sealed inside her as a weapon designed to destroy Konoha from within. When she realized what had been done to her, Rin chose to die rather than become the instrument of her village's destruction. She arranged her own death at Kakashi's hands, throwing herself in front of his Chidori as Obito — who had crawled out of Madara's cave to find her — watched from the distance through his Sharingan, too far away to intervene, close enough to see every detail.
+
+Something inside Obito shattered. The Mangekyō Sharingan awakened in both of his eyes (the right, still his own; the left, now transplanted in Kakashi's socket, activated in sympathy). He descended on the enemy shinobi surrounding the scene and slaughtered them all in a display of power no child should possess. And then he turned his grief upon the world. If this was what the ninja system produced — if kindness and love led only to cave-ins and impaled medics — then the system itself must be destroyed. The world of flesh and rules and consequences must be replaced by a world of dreams, where Rin could still be alive, where no one would ever have to die because no one would ever truly be awake. Obito walked back to Madara's cave and pledged himself to the Moon's Eye Plan. He took the name Tobi, and later Madara (using his master's name as a disguise), and he began the long, patient work of becoming the villain the world would one day call the masked man.
+
+### 9.5 The Nine-Tails Attack on Konoha
+
+Obito's first great act of destruction came on the night of October 10 — the night Kushina Uzumaki was giving birth to her son, Naruto. The Nine-Tailed Fox, Kurama, was sealed inside Kushina as her jinchūriki, and the seal was weakest during childbirth. Obito, wearing the mask that would become his trademark, attacked the delivery chamber, killed the medics and ANBU guards, and kidnapped the newborn Naruto before turning his attention to Kushina. He extracted the Nine-Tails from her body — an act that should have killed her — and used his Sharingan to bend Kurama to his will. He then drove the enraged fox into the heart of Konoha.
+
+The attack killed hundreds. Minato Namikaze, the Fourth Hokage, confronted Obito directly, forced him to release his control over the fox, and pursued him into the wilderness. There, in a brutal and brief duel, Minato managed to wound Obito and break his grip on Kurama. But the fox was still rampaging. Minato and Kushina, both mortally injured, chose to sacrifice themselves. They sealed the Nine-Tails into their newborn son, whispered their love to him in their final breaths, and died. Naruto Uzumaki, the boy who would one day save the world alongside the last loyal Uchiha, began his life as an orphan on the very night that Obito Uchiha's tragedy became his own.
+
+And the Uchiha clan, watching from the edge of the village, was immediately blamed. The Third Hokage's council — including the elders Koharu and Homura, and the ever-present Danzō Shimura — concluded that only a Sharingan-wielder could have controlled the Nine-Tails. Madara was presumed dead. Therefore, they reasoned, the attack must have been the work of a living Uchiha. The clan, already marginalized, now became suspect. Their police badges were stripped of their former authority. They were moved still further from the center of the village. They were watched by ANBU night and day. And they began, for the first time in their Konoha history, to seriously contemplate rebellion.
+
+---
+
+## Chapter X — The Childhood of Itachi and Sasuke
+
+### 10.1 Itachi Uchiha, the Prodigy
+
+Itachi Uchiha was born to Fugaku and Mikoto in a time of war. His earliest memories were of corpses. He was four years old when the Third Shinobi World War was at its height, and his father took him to the front lines — not as a participant, but as a witness, so that Itachi would understand from the start what it meant to be a shinobi. The experience marked Itachi profoundly. While other children his age played with wooden swords, Itachi watched a dying enemy soldier try to write his son's name in the dirt with his own blood. While other children his age cried over skinned knees, Itachi cried over the idea of pain itself. By the age of five, he had vowed — privately, in a way he could barely articulate — that he would do whatever it took to end war forever. It was the purest ambition in the Uchiha clan's history, and it would cost him everything.
+
+Itachi graduated from the Konoha Academy at the age of seven, the youngest graduate in a generation. He mastered the Sharingan at eight, became a chūnin at ten, and was inducted into the ANBU Black Ops at eleven. His talent was terrifying even to his own father, who loved him fiercely and feared him faintly. The clan saw in Itachi their salvation — a prodigy who could surpass even Madara, an heir whose brilliance would restore the Uchiha to the center of village life. Fugaku groomed him as his successor. Mikoto worried about him. Itachi himself, beneath the calm exterior, was quietly drowning. The village's political intrigues, the clan's simmering resentments, and the pacifist conviction he could not share with anyone — all of it weighed on a boy who was still, in many ways, just a boy.
+
+### 10.2 The Birth of Sasuke
+
+The one thing that lightened Itachi's world was his little brother. Sasuke Uchiha was born in the summer following the Nine-Tails attack, and Itachi, at nearly six years old, held him for the first time with an expression his mother would remember until her dying day. Sasuke was loud, demanding, and utterly adoring of his older brother from the moment he could recognize Itachi's face. Itachi in turn adored Sasuke with an intensity that even he could not explain. In a household where his father saw him as a strategic asset and his clan saw him as a symbol, Sasuke was the only person who saw Itachi as a brother. The two of them escaped to the roof, to the riverbank, to the training field behind the shrine, again and again, and it was there — away from the adults, away from the politics — that Itachi was happiest.
+
+There is a famous gesture between them, recorded by Mikoto in a household diary: Itachi would poke Sasuke's forehead with two fingers and say, "Sorry, Sasuke. Maybe next time." It was a promise to play another day. A promise to come home. A promise that, for years, Itachi kept faithfully. Later, when circumstances forced Itachi to do the unthinkable, he would repeat that same gesture on a night soaked in blood, and its meaning would bend into something unbearable. But in these early years, in the small yellow kitchen of the Uchiha main house, the forehead-poke was nothing but love.
+
+### 10.3 Shisui Uchiha, the Best Friend
+
+Itachi's closest friend outside his family was Shisui Uchiha, grandson of Kagami Uchiha and in many ways the inheritor of his grandfather's spirit. Shisui was older than Itachi by a few years, equally prodigious, and utterly devoted to the idea that the Uchiha and Konoha could still reconcile. Shisui had awakened the Mangekyō Sharingan at an unusually young age, and his specialized Mangekyō technique — Kotoamatsukami — was perhaps the most powerful genjutsu in the history of the clan. It allowed him to implant suggestions into a target's mind so seamlessly that the target would believe the new thoughts to be their own, with no memory of the alteration. A single use of Kotoamatsukami could, in theory, change the heart of an entire crowd. It could change the heart of a clan on the verge of revolt.
+
+Shisui and Itachi understood each other with a quietness that few words could match. They shared the same pacifist conviction. They shared the same love of the village and the same love of the clan. They shared the same terror of the collision that was coming between the two. And together, in a series of midnight meetings that historians would only later reconstruct, they began to plan how to prevent the Uchiha coup d'état that their own father was already preparing to lead.
+
+---
+
+*(End of pages 21–30 — Chapter XI begins in the next batch.)*
